@@ -1,0 +1,24 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
+env:
+  CARGO_INCREMENTAL: 0
+  RUSTFLAGS: "-Dwarnings"
+  CARGO_UNSTABLE_SPARSE_REGISTRY: true
+
+jobs:
+  rustfmt:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - uses: r7kamura/rust-problem-matchers@v1
+      - run: cargo fmt --all -- --check
+
