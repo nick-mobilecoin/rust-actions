@@ -26,4 +26,4 @@ jobs:
       - name: Run linters
         uses: nick-mobilecoin/lint-action@rustfmt
         with:
-          rustfmt: true
+          clippy: true
