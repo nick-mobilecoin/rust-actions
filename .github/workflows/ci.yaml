@@ -25,4 +25,4 @@ jobs:
       - name: Run linters
         uses: nick-mobilecoin/lint-action@cargo-fmt
         with:
-          rustfmt: true
+          rustfmt: "true"
