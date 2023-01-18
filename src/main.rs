@@ -1,2 +1,5 @@
 mod foo;
-fn main() {let delta = foo::delta(); println!("Time delta is {delta:?}");}
+fn main() {
+    let delta = foo::delta();
+    println!("Time delta is {delta:?}");
+}
