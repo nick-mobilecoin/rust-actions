@@ -26,4 +26,5 @@ jobs:
         uses: nick-mobilecoin/lint-action@cargo-fmt
         with:
           rustfmt: true
+          auto_fix: true
 
