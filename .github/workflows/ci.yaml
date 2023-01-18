@@ -11,12 +11,19 @@ env:
   RUSTFLAGS: "-Dwarnings"
   CARGO_UNSTABLE_SPARSE_REGISTRY: true
 
+permissions:
+  checks: write
+  contents: write
+
 jobs:
-  format:
+  run-linters:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
-      - uses: mbrobbel/rustfmt-check@master
+      - name: Run linters
+        uses: nick-mobilecoin/lint-action@cargo-fmt
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          rustfmt: true
+
