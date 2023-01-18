@@ -24,6 +24,6 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
       - name: Run linters
-        uses: nick-mobilecoin/lint-action@cargo-fmt
+        uses: nick-mobilecoin/lint-action@rustfmt
         with:
           rustfmt: true
