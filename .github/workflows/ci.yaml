@@ -23,6 +23,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
       - name: Run linters
-        uses: nick-mobilecoin/lint-action@05bd5c6d81ee4920a046e4bdfa4d751d82b4f081
+        uses: nick-mobilecoin/lint-action@cargo-fmt
         with:
           rustfmt: true
