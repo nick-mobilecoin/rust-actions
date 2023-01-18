@@ -24,6 +24,6 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
       - name: Run linters
-        uses: nick-mobilecoin/lint-action@rustfmt
+        uses: nick-mobilecoin/lint-action@clippy
         with:
           clippy: true
