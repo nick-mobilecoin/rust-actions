@@ -27,3 +27,4 @@ jobs:
         uses: nick-mobilecoin/lint-action@clippy
         with:
           clippy: true
+          auto_fix: true
