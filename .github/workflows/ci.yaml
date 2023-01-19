@@ -1,24 +1,39 @@
-name: ci
-
+name: Open a release PR
 on:
-  push:
-    branches:
-      - 'main'
-  pull_request:
-
-env:
-  CARGO_INCREMENTAL: 0
-  RUSTFLAGS: "-Dwarnings"
-  CARGO_UNSTABLE_SPARSE_REGISTRY: true
+  workflow_dispatch:
+    inputs:
+      crate:
+        description: Crate to release
+        required: true
+        type: choice
+        options:
+          - widget
+          - gadget
+          - budget
+          - fidget
+          - nugget
+      version:
+        description: Version to release
+        required: true
+        type: string
 
 jobs:
-  rustfmt:
-    runs-on: ubuntu-22.04
+  make-release-pr:
+    permissions:
+      id-token: write # Enable OIDC
+      pull-requests: write
+      contents: write
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: chainguard-dev/actions/setup-gitsign@main
+      - name: Install cargo-release
+        uses: taiki-e/install-action@v1
         with:
-          components: rustfmt
-      - uses: r7kamura/rust-problem-matchers@v1
-      - run: cargo fmt --all -- --check
+          tool: cargo-release
 
+      - uses: cargo-bins/release-pr@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ inputs.version }}
+          crate-name: ${{ inputs.crate }}
