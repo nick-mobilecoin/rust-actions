@@ -2,16 +2,6 @@ name: Open a release PR
 on:
   workflow_dispatch:
     inputs:
-      crate:
-        description: Crate to release
-        required: true
-        type: choice
-        options:
-          - widget
-          - gadget
-          - budget
-          - fidget
-          - nugget
       version:
         description: Version to release
         required: true
@@ -36,4 +26,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ inputs.version }}
-          crate-name: ${{ inputs.crate }}
+          crate-release-all: true
