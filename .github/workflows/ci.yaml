@@ -17,14 +17,16 @@ permissions:
 
 jobs:
   run-linters:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
 
       - uses: dtolnay/rust-toolchain@stable
       - name: Run linters
-        uses: nick-mobilecoin/lint-action@clippy
+        uses: nick-mobilecoin/lint-action@rustfmt
         with:
-          clippy: true
-          auto_fix: true
+          rustfmt: true
