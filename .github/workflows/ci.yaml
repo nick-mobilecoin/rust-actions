@@ -30,4 +30,3 @@ jobs:
         uses: nick-mobilecoin/lint-action@rustfmt-with-updated-index
         with:
           rustfmt: true
-          rustfmt_args: " -- --color=never "
